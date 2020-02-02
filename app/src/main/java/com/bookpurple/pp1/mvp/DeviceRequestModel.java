@@ -7,7 +7,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DeviceRequestModel {
 
-    @SerializedName("panNumber")
+    @SerializedName("userId")
+    public String email;
+
+    @SerializedName("panNo")
     public String panNumber;
 
 }

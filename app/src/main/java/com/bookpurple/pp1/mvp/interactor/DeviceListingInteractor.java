@@ -27,9 +27,10 @@ public class DeviceListingInteractor {
         serviceApi.updateDeviceStatus(updateDeviceStatusRequest);
     }
 
-    public DeviceRequestModel createDeviceRequestModel(String panId) {
+    public DeviceRequestModel createDeviceRequestModel(String email, String panNumber) {
         DeviceRequestModel deviceRequestModel = new DeviceRequestModel();
-        deviceRequestModel.panNumber = panId;
+        deviceRequestModel.email = email;
+        deviceRequestModel.panNumber = panNumber;
         return deviceRequestModel;
     }
 

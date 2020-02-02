@@ -42,7 +42,8 @@ public class PanListingAdapter extends RecyclerView.Adapter<PanListingViewHolder
     public void setData(List<PanDetails> panDetailResponses) {
         this.panDetailResponses.clear();
         this.panDetailResponses.addAll(panDetailResponses);
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
+        //this.notifyItemRangeChanged(0, this.panDetailResponses.size());
     }
 
     @NonNull
@@ -60,7 +61,7 @@ public class PanListingAdapter extends RecyclerView.Adapter<PanListingViewHolder
 
     @Override
     public int getItemCount() {
-        return panDetailResponses.size();
+        return this.panDetailResponses.size();
     }
 
     public PublishSubject<PanClickedItem> getVendorClickedItemPublishSubject() {

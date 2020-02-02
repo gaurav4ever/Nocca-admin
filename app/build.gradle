@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
-def productionUrl = "https://bp-catalog-service.herokuapp.com/"
+def productionUrl = "\"https://nocca-pp.herokuapp.com/\""
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.bookpurple.pp1"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "PRODUCTION_URL", productionUrl

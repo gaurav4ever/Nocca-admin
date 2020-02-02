@@ -40,11 +40,10 @@ public class LandingActivity extends AppCompatActivity {
 
     private void addClickObservables() {
 
-        UserDetailsRequest userDetailsRequest = new UserDetailsRequest();
-        userDetailsRequest.email = emailEditText.getText().toString();
-
         RxViewUtil.click(loginButton)
                 .subscribe(aVoid -> {
+                    UserDetailsRequest userDetailsRequest = new UserDetailsRequest();
+                    userDetailsRequest.email = emailEditText.getText().toString();
                     loginButtonPublishSubject.onNext(userDetailsRequest);
                 }, throwable -> Logger.logException(TAG, throwable));
     }
@@ -53,6 +52,7 @@ public class LandingActivity extends AppCompatActivity {
     private void registerToClickObservables() {
         Disposable loginButtonClickSubscription = loginButtonPublishSubject
                 .subscribe(userDetailsRequest -> {
+                    emailEditText.getText().toString();
                     startPanListingActivity(userDetailsRequest);
                 }, throwable -> Logger.logException(TAG, throwable));
 

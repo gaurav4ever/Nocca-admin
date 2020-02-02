@@ -1,5 +1,6 @@
 package com.bookpurple.pp1.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.bookpurple.pp1.mvp.UserDetailsRequest;
 import com.bookpurple.pp1.mvp.interactor.PanListingInteractor;
 import com.bookpurple.pp1.mvp.interfaces.PanListingViewPresenterContract;
 import com.bookpurple.pp1.mvp.presenter.PanListingPresenter;
+import com.bookpurple.pp1.publishsubject.PanClickedItem;
 import com.bookpurple.pp1.util.rx.RxSchedulersAbstractBase;
 import com.bookpurple.pp1.util.rx.RxUtil;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -50,7 +52,7 @@ public class PanListingActivity extends AppCompatActivity implements PanListingV
 
     private RecyclerView listingRecyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private PanListingAdapter adapter;
+    public PanListingAdapter adapter;
 
     private UserDetailsRequest userDetailsRequest;
 
@@ -90,26 +92,36 @@ public class PanListingActivity extends AppCompatActivity implements PanListingV
                 interactor,
                 rxSchedulers,
                 lifecycle);
-        RegisterToClickObservables();
     }
 
     private void RegisterToClickObservables() {
         Disposable panListingItemClickSubscription = adapter.getVendorClickedItemPublishSubject()
                 .subscribe(panClickedItem -> {
                     // start device details listing activity
+                    startPanListingActivity(panClickedItem);
                 }, throwable -> Logger.logException(TAG, throwable));
 
         lifecycle.add(panListingItemClickSubscription);
     }
 
+    private void startPanListingActivity(PanClickedItem panClickedItem) {
+        Intent intent = new Intent(getApplicationContext(), DeviceListingActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.ParcelConstant.USER_EMAIL, userDetailsRequest.email);
+        bundle.putString(Constant.ParcelConstant.PAN_NUMBER, panClickedItem.panNumber);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     private void initView() {
-        listingRecyclerView = findViewById(R.id.listing);
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        listingRecyclerView = findViewById(R.id.pan_listing);
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL, false);
         listingRecyclerView.setLayoutManager(linearLayoutManager);
         adapter = new PanListingAdapter(this, lifecycle);
         listingRecyclerView.setAdapter(adapter);
 
         listingShimmerLayout = findViewById(R.id.listing_shimmer_layout);
+        RegisterToClickObservables();
     }
 
     @Override
@@ -117,6 +129,7 @@ public class PanListingActivity extends AppCompatActivity implements PanListingV
         stopShimmerAnimation();
         if (panDetailResponse != null) {
             adapter.setData(panDetailResponse.panDetails);
+            adapter.notifyDataSetChanged();
         }
     }
 

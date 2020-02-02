@@ -16,12 +16,12 @@ import retrofit2.http.POST;
  */
 public interface ServiceApi {
 
-    @POST("/getPans")
+    @POST("/nocca/getPanList")
     Observable<PanDetailResponse> getPanDetails(@Body UserDetailsRequest userDetailsRequest);
 
-    @POST("/getDevices")
+    @POST("/nocca/getDevicesList")
     Observable<DeviceResponseModel> getDeviceDetails(@Body DeviceRequestModel deviceRequestModel);
 
-    @POST("/updateDeviceStatus")
+    @POST("/nocca/updateDeviceStatus")
     void updateDeviceStatus(@Body UpdateDeviceStatusRequest updateDeviceStatusRequest);
 }
