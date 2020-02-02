@@ -1,5 +1,7 @@
 package com.bookpurple.pp1.mvp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /*
@@ -7,5 +9,6 @@ import java.util.List;
  */
 public class DeviceDetailsResponse {
 
+    @SerializedName("deviceDetails")
     public List<DeviceDetails> deviceDetails;
 }
