@@ -5,5 +5,5 @@ package com.bookpurple.pp1.publishsubject;
  */
 public class PanClickedItem {
 
-    public String panId;
+    public String panNumber;
 }

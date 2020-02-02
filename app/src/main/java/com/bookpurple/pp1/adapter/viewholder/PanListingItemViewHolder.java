@@ -44,7 +44,7 @@ public class PanListingItemViewHolder extends PanListingViewHolder<PanDetails> {
         RxViewUtil.click(panTextView)
                 .subscribe(aVoid -> {
                     final PanClickedItem panClickedItem = new PanClickedItem();
-                    panClickedItem.panId = item.panId;
+                    panClickedItem.panNumber = item.panNumber;
                     panClickedItemPublishSubject.onNext(panClickedItem);
                 }, throwable -> Logger.logException(throwable));
     }

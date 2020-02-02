@@ -29,7 +29,7 @@ public class DeviceListingInteractor {
 
     public DeviceRequestModel createDeviceRequestModel(String panId) {
         DeviceRequestModel deviceRequestModel = new DeviceRequestModel();
-        deviceRequestModel.panId = panId;
+        deviceRequestModel.panNumber = panId;
         return deviceRequestModel;
     }
 

@@ -5,6 +5,6 @@ package com.bookpurple.pp1.mvp;
  */
 public class DeviceRequestModel {
 
-    public String panId;
+    public String panNumber;
 
 }

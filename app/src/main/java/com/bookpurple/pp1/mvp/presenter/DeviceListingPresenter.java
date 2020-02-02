@@ -16,7 +16,7 @@ import io.reactivex.disposables.Disposable;
  */
 public class DeviceListingPresenter extends DeviceListingViewPresenterContract.Presenter {
 
-    private static final String TAG = PanListingPresenter.class.getSimpleName();
+    private static final String TAG = DeviceListingPresenter.class.getSimpleName();
 
     private DeviceListingInteractor listingInteractor;
     private RxSchedulersAbstractBase rxSchedulers;

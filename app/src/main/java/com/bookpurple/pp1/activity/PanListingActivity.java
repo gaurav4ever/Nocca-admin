@@ -96,7 +96,7 @@ public class PanListingActivity extends AppCompatActivity implements PanListingV
     private void RegisterToClickObservables() {
         Disposable panListingItemClickSubscription = adapter.getVendorClickedItemPublishSubject()
                 .subscribe(panClickedItem -> {
-
+                    // start device details listing activity
                 }, throwable -> Logger.logException(TAG, throwable));
 
         lifecycle.add(panListingItemClickSubscription);

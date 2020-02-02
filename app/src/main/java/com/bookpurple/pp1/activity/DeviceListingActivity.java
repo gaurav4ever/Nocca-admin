@@ -57,6 +57,7 @@ public class DeviceListingActivity extends AppCompatActivity implements DeviceLi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.devicelistingactivity);
         injectDependencies();
         handleIntent();
         initView();
