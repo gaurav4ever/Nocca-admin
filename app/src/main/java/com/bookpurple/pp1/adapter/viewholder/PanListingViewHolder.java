@@ -8,7 +8,7 @@ import com.bookpurple.pp1.mvp.PanDetails;
 /*
  * Written by Gaurav Sharma on 2020-02-02.
  */
-public abstract class PanListingViewHolder<T extends PanDetails> extends RecyclerView.ViewHolder {
+public abstract class PanListingViewHolder<T> extends RecyclerView.ViewHolder {
 
     public PanListingViewHolder(View itemView) {
         super(itemView);

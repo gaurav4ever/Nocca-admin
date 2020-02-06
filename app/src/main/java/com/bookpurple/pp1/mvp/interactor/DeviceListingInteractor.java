@@ -23,8 +23,8 @@ public class DeviceListingInteractor {
         return serviceApi.getDeviceDetails(deviceRequestModel);
     }
 
-    public void updateDeviceStatus(UpdateDeviceStatusRequest updateDeviceStatusRequest) {
-        serviceApi.updateDeviceStatus(updateDeviceStatusRequest);
+    public Observable<String> updateDeviceStatus(UpdateDeviceStatusRequest updateDeviceStatusRequest) {
+        return serviceApi.updateDeviceStatus(updateDeviceStatusRequest);
     }
 
     public DeviceRequestModel createDeviceRequestModel(String email, String panNumber) {

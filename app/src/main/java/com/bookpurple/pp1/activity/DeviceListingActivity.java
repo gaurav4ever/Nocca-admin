@@ -67,7 +67,7 @@ public class DeviceListingActivity extends AppCompatActivity implements DeviceLi
     private void handleIntent() {
         if (null != getIntent() && null != getIntent().getExtras()) {
             Bundle bundle = getIntent().getExtras();
-            if (!bundle.containsKey(Constant.ParcelConstant.PAN_LISTING_REQUEST_MODEL)) {
+            if (!bundle.containsKey(Constant.ParcelConstant.USER_EMAIL)) {
                 finish();
             } else {
                 deviceRequestModel = interactor

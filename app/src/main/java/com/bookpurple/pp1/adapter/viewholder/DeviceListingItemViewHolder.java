@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.bookpurple.pp1.R;
 import com.bookpurple.pp1.logger.Logger;
@@ -24,7 +25,7 @@ public class DeviceListingItemViewHolder extends DeviceListingViewHolder<DeviceD
     private PublishSubject<DeviceClickedItem> deviceStatusClickedItemPublishSubject;
 
     private TextView deviceTextView;
-    private CheckBox deviceStatusCheckBox;
+    private ToggleButton deviceStatusCheckBox;
 
     public DeviceListingItemViewHolder(Context context,
                                        View itemView,
@@ -40,6 +41,7 @@ public class DeviceListingItemViewHolder extends DeviceListingViewHolder<DeviceD
 
     private void initViews(View itemView) {
         deviceTextView = itemView.findViewById(R.id.deviceId);
+        deviceStatusCheckBox = itemView.findViewById(R.id.deviceStatus);
     }
 
     @Override
@@ -62,7 +64,13 @@ public class DeviceListingItemViewHolder extends DeviceListingViewHolder<DeviceD
                 .subscribe(aVoid -> {
                     final DeviceClickedItem deviceClickedItem = new DeviceClickedItem();
                     deviceClickedItem.deviceId = item.deviceId;
-                    deviceClickedItem.status = item.status;
+                    if (deviceStatusCheckBox.isChecked()) {
+                        deviceClickedItem.status = 1;
+                        deviceStatusCheckBox.setChecked(true);
+                    } else {
+                        deviceClickedItem.status = 0;
+                        deviceStatusCheckBox.setChecked(false);
+                    }
                     deviceClickedItem.tokenId = item.tokenId;
                     deviceStatusClickedItemPublishSubject.onNext(deviceClickedItem);
                 });

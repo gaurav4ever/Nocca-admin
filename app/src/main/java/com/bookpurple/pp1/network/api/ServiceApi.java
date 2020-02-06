@@ -23,5 +23,5 @@ public interface ServiceApi {
     Observable<DeviceResponseModel> getDeviceDetails(@Body DeviceRequestModel deviceRequestModel);
 
     @POST("/nocca/updateDeviceStatus")
-    void updateDeviceStatus(@Body UpdateDeviceStatusRequest updateDeviceStatusRequest);
+    Observable<String> updateDeviceStatus(@Body UpdateDeviceStatusRequest updateDeviceStatusRequest);
 }

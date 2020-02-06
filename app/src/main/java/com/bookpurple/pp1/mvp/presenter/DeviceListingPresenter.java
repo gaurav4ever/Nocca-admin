@@ -1,5 +1,7 @@
 package com.bookpurple.pp1.mvp.presenter;
 
+import android.util.Log;
+
 import com.bookpurple.pp1.logger.Logger;
 import com.bookpurple.pp1.mvp.DeviceRequestModel;
 import com.bookpurple.pp1.mvp.DeviceResponseModel;
@@ -52,7 +54,12 @@ public class DeviceListingPresenter extends DeviceListingViewPresenterContract.P
 
     @Override
     public void updateDeviceStatus(UpdateDeviceStatusRequest updateDeviceStatusRequest) {
-        listingInteractor.updateDeviceStatus(updateDeviceStatusRequest);
+        listingInteractor.updateDeviceStatus(updateDeviceStatusRequest)
+        .subscribeOn(rxSchedulers.getIOScheduler())
+        .observeOn(rxSchedulers.getMainThreadScheduler())
+        .subscribe(response -> {
+            Logger.log(response);
+        }, throwable -> Logger.logException(TAG, throwable));
     }
 
     @Override
