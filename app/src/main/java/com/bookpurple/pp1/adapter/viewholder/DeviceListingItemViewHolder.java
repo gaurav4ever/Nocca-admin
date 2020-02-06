@@ -46,7 +46,11 @@ public class DeviceListingItemViewHolder extends DeviceListingViewHolder<DeviceD
 
     @Override
     public void bindData(DeviceDetails item, int position) {
-        deviceTextView.setText(item.deviceName);
+        if (null != item.deviceName) {
+            deviceTextView.setText(item.deviceName);
+        } else {
+            deviceTextView.setText(item.deviceId);
+        }
         deviceStatusCheckBox.setChecked(false);
         if (item.status == 1) {
             deviceStatusCheckBox.setChecked(true);
